@@ -37,10 +37,18 @@
         // Firebase Storage
         const storage = getStorage();
 
+        // 메인 페이지 지정
+        var mainpage = 'members.html';
+
+        $(document).ready(function () {
+            $("#cancelbtn").click(async function () {
+                location.replace(mainpage);
+            });
+        });
+
         $(document).ready(function () {
             $("#savebtn").click(async function () {
                 var file = document.getElementById('image').files[0]
-                var mainpage = 'members.html';
 
                 // 아무 파일도 선택하지 않고 등록 누르면 alert 발생
                 if (!file) {
@@ -152,11 +160,9 @@
     <!-- section end -->
 
     <!-- footer start -->
-    <footer>
-        <div id="form-savebtn">
+    <footer id = "myfooter">
+        <div id="form-btn">
             <button id="savebtn" type="button" class="btn btn-danger">등록</button>
-        </div>
-        <div id="form-savebtn">
             <button id="cancelbtn" type="button" class="btn btn-danger">취소</button>
         </div>
     </footer>
