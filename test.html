@@ -31,19 +31,10 @@
         const db = getFirestore(app);
 
         let docs = await getDocs(collection(db, "members"));
-        docs.forEach((doc) => {
-            let row = doc.data();
-            let name = row.name
-            
-            if(name){
-                
-            }
-        });
     </script>
 </head>
 
 <body>
-
 </body>
 
 </html>

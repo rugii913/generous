@@ -82,7 +82,7 @@
 
                     console.log(doc)
 
-                    // 데이터베이스에 추가
+                    // 데이터베이스에 사용자 이름으로 추가
                     const newdoc = await addDoc(collection(db, "members"), doc);
                     console.log(newdoc.id);
                     alert("저장 완료!");
@@ -104,9 +104,13 @@
 </head>
 
 <body>
+    <!-- 헤더 시작 -->
     <header>
         <h1>관대</h1>
     </header>
+    <!-- 헤더 끝 -->
+
+    <!-- 섹션 시작 -->
     <section>
         <h3>우리의 관대한 팀원을 등록합니다.</h3>
         <div class="mypostingbox" id='postingbox'>
@@ -144,10 +148,19 @@
                 <textarea class="form-control" id="style" rows="5"></textarea>
             </div>
         </div>
+    </section>
+    <!-- section end -->
+
+    <!-- footer start -->
+    <footer>
         <div id="form-savebtn">
             <button id="savebtn" type="button" class="btn btn-danger">등록</button>
         </div>
-    </section>
+        <div id="form-savebtn">
+            <button id="cancelbtn" type="button" class="btn btn-danger">취소</button>
+        </div>
+    </footer>
+    <!-- footer end -->
 </body>
 
 </html>
