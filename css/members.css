@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
+
+* {
+    font-family: 'Song Myung', serif;
+}
+
+#page-header{
+    height: 140px;
+    font-size: 64px;
+    display: flex;
+    border-bottom: 1px solid #6f6f6f;
+}
+
+#page-header>div {
+    margin: auto;
+}
+
+#page-footer{
+    height: 140px;
+    font-size: 16px;
+    display: flex;
+    border-top: 1px solid #6f6f6f;
+}
+
+.grid-container {
+    margin: 80px 136px 0px 136px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 30px;
+    row-gap: 80px;
+}
+
+.grid-whole {
+    grid-column: span 12;
+    border: 1px solid black;
+}
+
+.grid-half {
+    grid-column: span 6;
+    background-color: blue;
+}
+
+.grid-half-box {
+    height: 400px;
+    grid-column: span 6;
+    border: 1px solid black;
+}
+
+.grid-half-box-gray {
+    height: 400px;
+    grid-column: span 6;
+    background-color: gray;
+}
+
+.grid-one-third-box {
+    height: 400px;
+    grid-column: span 4;
+    border: 1px solid black;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 80px 136px 80px 136px;
+    /* width: 40%; */
+}
+
+.buttons>button {
+    font-size: 40px;
+    height: 64px;
+    width: 270px;
+}
