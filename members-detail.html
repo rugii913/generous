@@ -13,14 +13,13 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- CSS 파일 -->
     <link rel="stylesheet" href="members.css">
+    <!-- 조각낸 HTML 파일 포함시켜주는 js -->
+    <script src="/static/js/includeHTML.js"></script>
 </head>
 
 <body>
-    <!-- 헤더 시작 -->
-    <header id="page-header">
-        <div>관대</div>
-    </header>
-    <!-- 헤더 끝 -->
+    <!-- 헤더 include-html -->
+    <header include-html="/static/html/header.html" id="page-header"></header>
 
     <div class="grid-container">
         <div class="grid-half-box-gray"></div>
@@ -55,11 +54,12 @@
         </button>
       </div>
 
-    <!-- 푸터 시작 -->
-    <footer id="page-footer">
-        <div>푸터입니다.</div>
-    </footer>
-    <!-- 푸터 끝 -->
+    <!-- 푸터 include-html -->
+    <footer include-html="/static/html/footer.html" id="page-footer"></footer>
 </body>
+
+<script>
+    includeHTML();
+</script>
 
 </html>
