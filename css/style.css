@@ -1,0 +1,30 @@
+header{
+  margin: 15px auto 10px auto;
+  text-align: center;
+}
+
+h3{
+  text-align: center;
+}
+
+.mypostingbox{
+  width: 600px;
+  margin: 20px auto 20px auto;
+
+  /* padding: 20px; */
+}
+
+#form-savebtn{
+  /* background-color: green; */
+  text-align: center;
+}
+
+.form-control{
+  width: 100px;
+}
+
+#basic-addon1{
+  width: 150px;
+  display: block;
+  background-color: white
+}
