@@ -1,7 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
 * {
     font-family: 'Song Myung', serif;
+} */
+
+@font-face {
+    font-family: 'DeogonPrincess';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/DeogonPrincess.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'DeogonPrincess', serif;
 }
 
 #page-header{
@@ -50,6 +60,11 @@
     height: 400px;
     grid-column: span 6;
     border: 1px solid black;
+}
+
+.grid-half-box .member-detail-info {
+    margin: 46px 0 0 100px;
+    font-size: 48px;
 }
 
 .grid-half-box-gray {
