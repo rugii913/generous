@@ -124,5 +124,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-#보안 관련
-package-lock.json
+#보안 관련 - 빌드 실패하여 주석 처리함
+#package-lock.json
