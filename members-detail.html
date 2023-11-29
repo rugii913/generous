@@ -15,6 +15,62 @@
     <link rel="stylesheet" href="/generous/css/members.css">
     <!-- 조각낸 HTML 파일 포함시켜주는 js -->
     <script src="/generous/js/includeHTML.js"></script>
+    <!-- Firestore Database 및 storage에서 쿼리 파라미터에 해당하는 정보 가져오기 -->
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
+
+        // 외부 자바스크립트 파일 가져오기
+        import { reloadPage } from './js/reloadPage.js';
+        import { firebaseConfig } from './js/firebase-config.js';
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        // Firestore Database
+        const db = getFirestore(app);
+        // Firebase Storage
+        const storage = getStorage();
+
+        // 메인 페이지 지정
+        var mainpage = './members.html';
+
+        // 쿼리 파라미터 가져오기
+        // https://europani.github.io/javascript/2021/06/25/031-URL-parameter.html 
+        const name = new URLSearchParams(window.location.search).get('name');
+
+        // name으로 member 데이터 가져오기
+        async function getMember() {
+            const q = query(collection(db, "members"), where("name", "==", name));
+
+            // console.log(q);
+            const querySnapshot = await getDocs(q); // https://firebase.google.com/docs/firestore/query-data/queries?hl=ko, https://firebase.google.com/docs/reference/js/firestore_?hl=ko#getdocs
+            // https://firebase.google.com/docs/reference/js/firestore_.querysnapshot.md?hl=ko#querysnapshot_class
+            // QuerySnapshot docs 속성으로 불러온 배열에서 임의로 0번째만 취함
+            return querySnapshot.docs[0].data();
+        }
+
+        // id에 맞게 데이터 넣어주기
+        async function renderMemberData() {
+            const member = await getMember();
+            let imageURL;
+            Object.keys(member).forEach((key) => {
+                key === "image" ? imageURL = member[key] : document.getElementById(key).innerText = member[key];
+            });
+            document.getElementById("image").setAttribute("src", imageURL);
+        }
+        renderMemberData();
+
+        // button-update에 기능 부여
+        document.getElementById("button-update").onclick = function() {
+            window.location.href = "members-update-form.html?name=" + name;
+        }
+        // button-back에 기능 부여
+        document.getElementById("button-members").onclick = function() {
+            window.location.href = "members.html";
+        }
+    </script>
 </head>
 
 <body>
@@ -22,29 +78,31 @@
     <header include-html="/generous/html/header.html" id="page-header"></header>
 
     <div class="grid-container">
-        <div class="grid-half-box-gray"></div>
+        <div class="grid-half-box-gray"><img src="" id="image" class="card-img-top" alt="member image"></div>
         <div class="grid-half-box">
-            <div><span>우리의 관대한</span></div>
-            <div><span>성명: ㅇㅇㅇ</span></div>
-            <div><a href="/generous/members-create-form.html">MBTI: IIII</a></div>
+            <p class="member-detail-info">우리의 관대한</p>
+            <p class="member-detail-info">성명: <span id="name">고양씨</span></p>
+            <p class="member-detail-info">MBTI: <span id="mbti">IIII</span></p>
         </div>
     </div>
 
     <div class="grid-container">
         <div class="grid-whole">
             <div>
-                <p>블로그: https://www.abc.io/abcd</p>
-                <p>한마디!: 야옹</p>
-                <p>TMI: 야옹</p>
-                <p>장점: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-                <p>협업 스타일 소개: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+                <p>블로그: <span id="blog">https://www.abc.io/abcd</span></p>
+                <p>한마디!: <span id="introduce">야옹</span></p>
+                <p>TMI: <span id="tmi">야옹</span></p>
+                <p>장점: <span id="strength">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                        ut labore</span></p>
+                <p>협업 스타일 소개: <span id="style">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore</span></p>
             </div>
         </div>
     </div>
 
     <div class="buttons">
-        <button>수정</button>
-        <button>뒤로 가기</button>
+        <button id="button-update">수정</button>
+        <button id="button-members">목록으로</button>
     </div>
 
     <!-- 푸터 include-html -->
