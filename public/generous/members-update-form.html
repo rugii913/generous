@@ -24,7 +24,7 @@
 
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, addDoc, query, where, doc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, addDoc, query, where, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
 
         // 외부 자바스크립트 파일 가져오기
@@ -80,7 +80,7 @@
                     document.getElementById(key).setAttribute("value", member[key]);
                 }
             });
-            
+
             // {
             //     key === "image" ? imageURL = member[key] : document.getElementById(key).setAttribute("value", member[key]);
             // }
@@ -143,6 +143,28 @@
                     // 모든 작업을 완료하면 메인 페이지로 돌아감
                     location.replace(mainpage);
 
+                    const q = query(collection(db, "members"), where("name", "==", name));
+                    const querySnapshot = await getDocs(q);
+                    const docSnapshot = querySnapshot.docs[0];
+                    // querySnapshot.docs -> Array<QueryDocumentSnapshot> 타입 // querySnapshot.docs[0] QueryDocumentSnapshot 타입
+                    // QueryDocumentSnapshot extens DocumentSnapshot
+                    // DocumentSnapshot.data -> AppModelType // -> 원하는 데이터라고 할만한 부분
+                    // DocumentSnapshot.ref -> DocumentReference
+                    docSnapshot.data["name"] = name;
+                    docSnapshot.data["image"] = imagePath;
+                    docSnapshot.data["mbti"] = mbti;
+                    docSnapshot.data["blog"] = blog;
+                    docSnapshot.data["introduce"] = introduce;
+                    docSnapshot.data["tmi"] = tmi;
+                    docSnapshot.data["strength"] = strength;
+                    docSnapshot.data["style"] = style;
+
+                    await updateDoc(docSnapshot.ref, docSnapshot.data);
+                    // 코드 샘플 https://cloud.google.com/firestore/docs/samples/firestore-data-set-field?hl=ko
+                    // API DocumentSnapshot - https://firebase.google.com/docs/reference/js/firestore_.documentsnapshot.md?hl=ko#documentsnapshot_class
+                    // Firestore 문서 https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko
+                    // 이 블로그 글과는 달리, 이런 메서드 모양이 안 나온다. https://saveyourtime.medium.com/firebase-cloud-firestore-add-set-update-delete-get-data-6da566513b1b 
+                    // ------------------------------------------------> 이런 모양으로 나오게 하려면 어떻게 해야할지?
                 } catch (error) {
                     console.error("에러 발생:", error);
                     alert("저장 중 오류가 발생했습니다.");
@@ -202,7 +224,7 @@
     <!-- section end -->
 
     <!-- footer start -->
-    <footer id = "myfooter">
+    <footer id="myfooter">
         <div id="form-btn">
             <button id="savebtn" type="button" class="btn btn-danger">수정 완료</button>
             <button id="cancelbtn" type="button" class="btn btn-danger">취소</button>
