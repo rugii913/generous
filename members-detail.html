@@ -61,15 +61,6 @@
             document.getElementById("image").setAttribute("src", imageURL);
         }
         renderMemberData();
-
-        // button-update에 기능 부여
-        document.getElementById("button-update").onclick = function() {
-            window.location.href = "members-update-form.html?name=" + name;
-        }
-        // button-back에 기능 부여
-        document.getElementById("button-members").onclick = function() {
-            window.location.href = "members.html";
-        }
     </script>
 </head>
 
@@ -101,8 +92,7 @@
     </div>
 
     <div class="buttons">
-        <button id="button-update">수정</button>
-        <button id="button-members">목록으로</button>
+        <button id="cancelbtn">목록으로</button>
     </div>
 
     <!-- 푸터 include-html -->
