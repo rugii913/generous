@@ -24,7 +24,7 @@
 
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, addDoc, query, where, doc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
 
         // 외부 자바스크립트 파일 가져오기
@@ -54,11 +54,13 @@
         // name으로 member 데이터 가져오기
         async function getMember() {
             const q = query(collection(db, "members"), where("name", "==", name));
-
             // console.log(q);
+
             const querySnapshot = await getDocs(q);
             // https://firebase.google.com/docs/reference/js/firestore_.querysnapshot.md?hl=ko#querysnapshot_class
             // QuerySnapshot docs 속성으로 불러온 배열에서 임의로 0번째만 취함
+
+            //console.log(querySnapshot.docs[0]);
             return querySnapshot.docs[0].data();
         }
 
@@ -202,7 +204,7 @@
     <!-- footer start -->
     <footer id = "myfooter">
         <div id="form-btn">
-            <button id="savebtn" type="button" class="btn btn-danger">등록</button>
+            <button id="savebtn" type="button" class="btn btn-danger">수정 완료</button>
             <button id="cancelbtn" type="button" class="btn btn-danger">취소</button>
         </div>
     </footer>
