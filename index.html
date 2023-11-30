@@ -15,7 +15,12 @@
     <link rel="stylesheet" href="/generous/css/members.css">
     <!-- 조각낸 HTML 파일 포함시켜주는 js -->
     <script src="/generous/js/includeHTML.js"></script>
+
+    <!-- favicon 추가 -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/faviconV2.png">
+
     <!-- Firestore Database 및 storage에서 이름 및 사진 가져오는 부분 -->
+
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -43,7 +48,7 @@
         });
 
         // docs 가져와서 카드로 만든 후 html로 append
-        async function getDocsAndAppend() { 
+        async function getDocsAndAppend() {
             let docs = await getDocs(collection(db, "members"));
 
             $('#cards').empty();
@@ -74,7 +79,9 @@
     <header include-html="/generous/html/header.html" id="page-header"></header>
 
     <div class="grid-container">
-        <div class="grid-half-box"><img id="generous-image" src="https://firebasestorage.googleapis.com/v0/b/copper-vertex-316713.appspot.com/o/images%2Fgenerous.jpg?alt=media&token=4035fccb-72bc-4fba-b25b-488a01dd2a9f" alt="generous person"></div>
+        <div class="grid-half-box"><img id="generous-image"
+                src="https://firebasestorage.googleapis.com/v0/b/copper-vertex-316713.appspot.com/o/images%2Fgenerous.jpg?alt=media&token=4035fccb-72bc-4fba-b25b-488a01dd2a9f"
+                alt="generous person"></div>
         <div class="grid-half-box team-info">
             <p>관대하죠</p>
             <p>저희는 관대합니다.</p>
@@ -83,7 +90,7 @@
     </div>
 
     <div id="cards" class="grid-container">
-        <div class="grid-one-third-box">
+        <!-- <div class="grid-one-third-box">
             <a href="/generous/members-detail.html">card</a>
         </div>
         <div class="grid-one-third-box">
@@ -97,7 +104,7 @@
         </div>
         <div class="grid-one-third-box">
             <a href="/generous/members-detail.html">card</a>
-        </div>
+        </div> -->
     </div>
 
     <!-- 푸터 include-html -->

@@ -15,7 +15,12 @@
     <link rel="stylesheet" href="/generous/css/members.css">
     <!-- 조각낸 HTML 파일 포함시켜주는 js -->
     <script src="/generous/js/includeHTML.js"></script>
+
+    <!-- favicon 추가 -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/faviconV2.png">
+
     <!-- Firestore Database 및 storage에서 쿼리 파라미터에 해당하는 정보 가져오기 -->
+
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -78,21 +83,19 @@
         <div class="grid-half-box"><img src="" id="image" class="card-img-top" alt="member image"></div>
         <div class="grid-half-box">
             <p class="member-detail-info">우리의 관대한</p>
-            <p class="member-detail-info">성명: <span id="name">고양씨</span></p>
-            <p class="member-detail-info">MBTI: <span id="mbti">IIII</span></p>
+            <p class="member-detail-info">성명: <span id="name"></span></p>
+            <p class="member-detail-info">MBTI: <span id="mbti"></span></p>
         </div>
     </div>
 
     <div class="grid-container">
         <div class="grid-whole">
             <div>
-                <p>블로그: <span id="blog">https://www.abc.io/abcd</span></p>
-                <p>한마디!: <span id="introduce">야옹</span></p>
-                <p>TMI: <span id="tmi">야옹</span></p>
-                <p>장점: <span id="strength">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                        ut labore</span></p>
-                <p>협업 스타일: <span id="style">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore</span></p>
+                <p>블로그: <span id="blog"></span></p>
+                <p>한마디!: <span id="introduce"></span></p>
+                <p>TMI: <span id="tmi"></span></p>
+                <p>장점: <span id="strength"></span></p>
+                <p>협업 스타일: <span id="style"></span></p>
             </div>
         </div>
     </div>
