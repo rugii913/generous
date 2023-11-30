@@ -22,10 +22,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - run: ls
+
     - name: Make configuration file
       run: |
         echo "export const firebaseConfig = {" >> public/generous/js/firebase-config.js
-        echo "  apiKey: \"${{secrets.API_KEY}}\"" >> /public/generous/js/firebase-config.js
+        echo "  apiKey: \"${{secrets.API_KEY}}\"" >> public/generous/js/firebase-config.js
         echo "  authDomain: \"${{secrets.AUTH_DOMAIN}}\"," >> generous/js/firebase-config.js
         echo "  projectId: \"${{secrets.PROJECT_ID}}\"," >> /generous/js/firebase-config.js
         echo "  storageBucket: \"${{secrets.STORAGE_BUCKET}}\"," >> js/firebase-config.js
