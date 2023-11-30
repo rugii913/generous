@@ -15,6 +15,52 @@
     <link rel="stylesheet" href="/generous/css/members.css">
     <!-- 조각낸 HTML 파일 포함시켜주는 js -->
     <script src="/generous/js/includeHTML.js"></script>
+    <!-- Firestore Database 및 storage에서 이름 및 사진 가져오는 부분 -->
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
+
+        // 외부 자바스크립트 파일 가져오기
+        import { reloadPage } from './js/reloadPage.js';
+        import { firebaseConfig } from './js/firebase-config.js';
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        // Firestore Database
+        const db = getFirestore(app);
+        // Firebase Storage
+        const storage = getStorage();
+
+        // 메인 페이지 지정
+        var mainpage = './members.html';
+
+        // docs 가져와서 카드로 만든 후 html로 append
+        async function getDocsAndAppend() { 
+            let docs = await getDocs(collection(db, "members"));
+
+            $('#cards').empty();
+            docs.forEach((doc) => {
+                let row = doc.data();
+
+                let image = row['image'];
+                let name = row['name'];
+
+                let temp_html = `
+            <div class="card h-100 grid-one-third-box" onclick="location.href ='members-detail.html?name=${name}'" style="cursor:pointer;"">
+                <img src="${image}"
+                        class="card-img-top" alt="member image">
+                <div class="card-body">
+                    <p class="card-text">${name}</p>
+                </div>
+            </div>`;
+
+                $('#cards').append(temp_html);
+            });
+        }
+        getDocsAndAppend();
+    </script>
 </head>
 
 <body>
@@ -30,7 +76,7 @@
         </div>
     </div>
 
-    <div class="grid-container">
+    <div id="cards" class="grid-container">
         <div class="grid-one-third-box">
             <a href="/generous/members-detail.html">card</a>
         </div>
