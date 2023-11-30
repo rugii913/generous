@@ -7,7 +7,7 @@ const PORT = 3000;
 // 정적 파일 불러오기 - 정적 파일이 위치할 경로를 public이라 많이들 함
 // cf. __dirname 관련 참고 https://reload1bronze.tistory.com/97
 // app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/generous'));
 
 // 라우팅 정의
 app.get("/", (req, res) => {
