@@ -34,7 +34,13 @@
         const storage = getStorage();
 
         // 메인 페이지 지정
-        var mainpage = './members.html';
+        var mainpage = './index.html';
+
+        $(document).ready(function () {
+            $("#cancelbtn").click(async function () {
+                location.replace(mainpage);
+            });
+        });
 
         // 쿼리 파라미터 가져오기
         // https://europani.github.io/javascript/2021/06/25/031-URL-parameter.html 
@@ -61,15 +67,6 @@
             document.getElementById("image").setAttribute("src", imageURL);
         }
         renderMemberData();
-
-        // button-update에 기능 부여
-        document.getElementById("button-update").onclick = function() {
-            window.location.href = "members-update-form.html?name=" + name;
-        }
-        // button-back에 기능 부여
-        document.getElementById("button-members").onclick = function() {
-            window.location.href = "members.html";
-        }
     </script>
 </head>
 
@@ -78,7 +75,7 @@
     <header include-html="/generous/html/header.html" id="page-header"></header>
 
     <div class="grid-container">
-        <div class="grid-half-box-gray"><img src="" id="image" class="card-img-top" alt="member image"></div>
+        <div class="grid-half-box"><img src="" id="image" class="card-img-top" alt="member image"></div>
         <div class="grid-half-box">
             <p class="member-detail-info">우리의 관대한</p>
             <p class="member-detail-info">성명: <span id="name">고양씨</span></p>
@@ -94,15 +91,14 @@
                 <p>TMI: <span id="tmi">야옹</span></p>
                 <p>장점: <span id="strength">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                         ut labore</span></p>
-                <p>협업 스타일 소개: <span id="style">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                <p>협업 스타일: <span id="style">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                         incididunt ut labore</span></p>
             </div>
         </div>
     </div>
 
     <div class="buttons">
-        <button id="button-update">수정</button>
-        <button id="button-members">목록으로</button>
+        <button id="cancelbtn">목록으로</button>
     </div>
 
     <!-- 푸터 include-html -->
