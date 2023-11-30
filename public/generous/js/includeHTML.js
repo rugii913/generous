@@ -32,6 +32,8 @@ function includeHTML(callback) {
         }
     }
     setTimeout(function () {
-        callback();
+        if (typeof callback === "function") { // check before calling it // commit a9c80a, a31e0d에서 수정된 부분
+            callback();
+        }
     }, 0);
 }
