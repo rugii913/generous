@@ -17,7 +17,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- firebase-config 파일 연결 -->
-    <script src="/js/firebase-config.js"></script>
+    <!-- <script src="/js/firebase-config.js"></script> -->
 
     <!-- 스크립트 작성 -->
     <script type="module">
@@ -29,6 +29,7 @@
 
         // 외부 자바스크립트 파일 가져오기
         import { reloadPage } from '/js/reloadPage.js';
+        import { firebaseConfig } from '/js/firebase-config.js';
 
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
