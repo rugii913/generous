@@ -32,6 +32,9 @@ function includeHTML(callback) {
         }
     }
     setTimeout(function () {
-        callback();
+        //check before calling it
+        if(typeof callback === "function"){
+            callback();
+        }
     }, 0);
 }
