@@ -34,7 +34,13 @@
         const storage = getStorage();
 
         // 메인 페이지 지정
-        var mainpage = './members.html';
+        var mainpage = './index.html';
+
+        $(document).ready(function () {
+            $("#cancelbtn").click(async function () {
+                location.replace(mainpage);
+            });
+        });
 
         // 쿼리 파라미터 가져오기
         // https://europani.github.io/javascript/2021/06/25/031-URL-parameter.html 
@@ -69,7 +75,7 @@
     <header include-html="/generous/html/header.html" id="page-header"></header>
 
     <div class="grid-container">
-        <div class="grid-half-box-gray"><img src="" id="image" class="card-img-top" alt="member image"></div>
+        <div class="grid-half-box"><img src="" id="image" class="card-img-top" alt="member image"></div>
         <div class="grid-half-box">
             <p class="member-detail-info">우리의 관대한</p>
             <p class="member-detail-info">성명: <span id="name">고양씨</span></p>
