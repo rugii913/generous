@@ -50,6 +50,15 @@
             });
         });
 
+        // 텍스트 아무것도 입력 안 했는지 확인
+        async function nullChk(data, errorMessage) {
+            if(data == ""){
+                alert(errorMessage);
+                return true;
+            }
+            return false;
+        } 
+
         $(document).ready(function () {
             $("#savebtn").click(async function () {
                 var file = document.getElementById('image').files[0]
@@ -60,17 +69,16 @@
                     return;
                 }
 
+                // 이미지 파일 여부 확인
+                if (!file.type.startsWith('image/')) {
+                    alert("이미지 파일만 등록 가능합니다.");
+                    return;
+                }
+
                 // 스토리지에 저장할 파일 경로 및 이름
                 const storageRef = ref(storage, 'images/' + file.name);
 
                 try {
-                    // 스토리지에 파일 업로드
-                    const snapshot = await uploadBytes(storageRef, file);
-                    console.log('Uploaded a blob or file!');
-
-                    // 저장 후, 이미지 경로 가져오기
-                    const imagePath = await getDownloadURL(storageRef);
-
                     let name = $("#name").val();
                     let mbti = $("#mbti").val();
                     let blog = $("#blog").val();
@@ -79,6 +87,20 @@
                     let strength = $("#strength").val();
                     let style = $("#style").val();
 
+                    if(await nullChk(name, "이름을 입력해주세요!")) return;
+                    if (await nullChk(mbti, "mbti를 입력해주세요!")) return;
+                    if(await nullChk(blog, "블로그 주소를 입력해주세요!")) return;
+                    if (await nullChk(introduce, "한마디!를 입력해주세요!")) return;
+                    if(await nullChk(tmi, "tmi를 입력해주세요!")) return;
+                    if (await nullChk(strength, "장점을 입력해주세요!")) return;
+                    if(await nullChk(style, "협업 스타일을 입력해주세요!")) return;
+
+                    // 스토리지에 파일 업로드
+                    const snapshot = await uploadBytes(storageRef, file);
+                    console.log('Uploaded a blob or file!');
+
+                    // 저장 후, 이미지 경로 가져오기
+                    const imagePath = await getDownloadURL(storageRef);
                     console.log(imagePath)
 
                     let doc = {
@@ -164,7 +186,7 @@
     <!-- section end -->
 
     <!-- footer start -->
-    <footer id = "myfooter">
+    <footer id="myfooter">
         <div id="form-btn">
             <button id="savebtn" type="button" class="btn btn-danger">등록</button>
             <button id="cancelbtn" type="button" class="btn btn-danger">취소</button>
